@@ -1,0 +1,19 @@
+자바코드: html 작성이 비효율적
+JSP: HTML 작업이 편해졌고 중간에 필요한 부분만 동적으로 자바코드를 사용했지만 JSP가 너무 많은 역할을 한다.
+MVC: 비지니스 로직과 HTML 작성을 분리한다.
+    * 컨트롤러: HTTP 요청을 받아서 파라미터를 검증하고, 비즈니스 로직을 실행한다. 그리고 뷰에 전달할 결과 데이터를 조회해서 모델에 담는다.
+    * 모델: 뷰에 출력할 데이터를 담아둔다. 뷰가 필요한 데이터를 모두 모델에 담아서 전달해주는 덕분에 뷰는 비즈니스 로직이나 데이터 접근을
+      몰라도 되고, 화면을 렌더링하는 일에 집중할 수 있다.
+    * 뷰: 모델에담겨있는데이터를사용해서화면을그리는일에집중한다. 여기서는 HTML을생성하는부분을 말한다.
+
+포워드중복
+    RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+    dispatcher.forward(request, response);
+
+ViewPath에 중복
+    String viewPath = "/WEB-INF/views/new-form.jsp";
+
+사용하지않는코드
+    HttpServletRequest request, HttpServletResponse response
+
+공통 처리가 어렵다. ->> 프론트 컨트롤러(Front Controller) 패턴을 도입
